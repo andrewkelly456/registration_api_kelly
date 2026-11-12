@@ -77,6 +77,69 @@ namespace CourseRegistration.Services
             return offerings;
         }
 
+        /* ---- Assignment #4 ---- */
+
+        public Course getCourseByName(String name) {
+            foreach(Course c in repo.Courses) {
+                if(c.Name.Equals(name, StringComparison.OrdinalIgnoreCase)) return c;
+            }
+            return null;
+        }
+
+        public List<Course> getCoursesByDepartment(String dept) {
+            List<Course> result = new List<Course>();
+            foreach(Course c in repo.Courses) {
+                if(c.Department.Equals(dept, StringComparison.OrdinalIgnoreCase)) result.Add(c);
+            }
+            result.Sort();
+            return result;
+        }
+
+        public bool addCourse(Course course) {
+            if(getCourseByName(course.Name) != null) return false;
+            repo.Courses.Add(course);
+            return true;
+        }
+
+        public bool updateCourse(String name, Course updated) {
+            Course existing = getCourseByName(name);
+            if(existing == null) return false;
+            //modify in place (not replace) so goals/offerings still point at the same object
+            existing.Title = updated.Title;
+            existing.Credits = updated.Credits;
+            existing.Description = updated.Description;
+            return true;
+        }
+
+        public bool deleteCourse(String name) {
+            Course existing = getCourseByName(name);
+            if(existing == null) return false;
+            repo.Courses.Remove(existing);
+            repo.Offerings.RemoveAll(o => o.TheCourse == existing);
+            foreach(CoreGoal g in repo.Goals) g.Courses.Remove(existing);
+            return true;
+        }
+
+        public List<CoreGoal> getGoalsByCourseName(String name) {
+            Course course = getCourseByName(name);
+            if(course == null) return null;
+            List<CoreGoal> result = new List<CoreGoal>();
+            foreach(CoreGoal g in repo.Goals) {
+                if(g.Courses.Contains(course)) result.Add(g);
+            }
+            return result;
+        }
+
+        public List<CourseOffering> getOfferingsByCourseNameAndSemester(String name, String semester) {
+            Course course = getCourseByName(name);
+            if(course == null) return null;
+            List<CourseOffering> result = new List<CourseOffering>();
+            foreach(CourseOffering o in repo.Offerings) {
+                if(o.TheCourse == course && o.Semester.Equals(semester, StringComparison.OrdinalIgnoreCase)) result.Add(o);
+            }
+            return result;
+        }
+
         /* As a student I want to see all courses that meet a core goal, so that I can plan out
            my courses over the next few semesters and choose core courses that make sense for me */
 
