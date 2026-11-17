@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("registration_api_kelly")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91a217a8d61bc9e51f3d0fc6fc31c65c4ef64f14")]
 [assembly: System.Reflection.AssemblyProductAttribute("registration_api_kelly")]
 [assembly: System.Reflection.AssemblyTitleAttribute("registration_api_kelly")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
