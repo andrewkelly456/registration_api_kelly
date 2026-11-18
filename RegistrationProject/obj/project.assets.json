@@ -5,40 +5,28 @@
       "BouncyCastle.Cryptography/2.6.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/BouncyCastle.Cryptography.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/BouncyCastle.Cryptography.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/BouncyCastle.Cryptography.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/BouncyCastle.Cryptography.dll": {}
         }
       },
       "Google.Protobuf/3.35.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Google.Protobuf.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Google.Protobuf.dll": {}
         }
       },
       "K4os.Compression.LZ4/1.3.8": {
         "type": "package",
         "compile": {
-          "lib/net5.0/K4os.Compression.LZ4.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Compression.LZ4.dll": {}
         },
         "runtime": {
-          "lib/net5.0/K4os.Compression.LZ4.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Compression.LZ4.dll": {}
         }
       },
       "K4os.Compression.LZ4.Streams/1.3.8": {
@@ -49,27 +37,19 @@
           "System.IO.Pipelines": "6.0.3"
         },
         "compile": {
-          "lib/net5.0/K4os.Compression.LZ4.Streams.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Compression.LZ4.Streams.dll": {}
         },
         "runtime": {
-          "lib/net5.0/K4os.Compression.LZ4.Streams.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Compression.LZ4.Streams.dll": {}
         }
       },
       "K4os.Hash.xxHash/1.0.8": {
         "type": "package",
         "compile": {
-          "lib/net5.0/K4os.Hash.xxHash.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Hash.xxHash.dll": {}
         },
         "runtime": {
-          "lib/net5.0/K4os.Hash.xxHash.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/K4os.Hash.xxHash.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.0": {
@@ -78,14 +58,10 @@
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.7.1"
         },
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -97,14 +73,10 @@
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.7.1"
         },
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -136,27 +108,19 @@
           "Microsoft.IdentityModel.Tokens": "6.7.1"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         }
       },
       "Microsoft.IdentityModel.Logging/6.7.1": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
         }
       },
       "Microsoft.IdentityModel.Protocols/6.7.1": {
@@ -166,14 +130,10 @@
           "Microsoft.IdentityModel.Tokens": "6.7.1"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
         }
       },
       "Microsoft.IdentityModel.Protocols.OpenIdConnect/6.7.1": {
@@ -183,14 +143,10 @@
           "System.IdentityModel.Tokens.Jwt": "6.7.1"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
         }
       },
       "Microsoft.IdentityModel.Tokens/6.7.1": {
@@ -201,27 +157,19 @@
           "System.Security.Cryptography.Cng": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
         }
       },
       "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
       "MySql.Data/26.10.0": {
@@ -235,14 +183,10 @@
           "ZstdSharp.Port": "0.8.8"
         },
         "compile": {
-          "lib/netstandard2.1/MySql.Data.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MySql.Data.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/MySql.Data.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.1/MySql.Data.dll": {}
         },
         "runtimeTargets": {
           "runtimes/win-x64/native/comerr64.dll": {
@@ -285,14 +229,10 @@
           "Microsoft.OpenApi": "1.2.3"
         },
         "compile": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -304,14 +244,10 @@
           "Swashbuckle.AspNetCore.Swagger": "5.6.3"
         },
         "compile": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -320,14 +256,10 @@
       "Swashbuckle.AspNetCore.SwaggerUI/5.6.3": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -339,14 +271,10 @@
           "System.Security.Cryptography.ProtectedData": "10.0.8"
         },
         "compile": {
-          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp2.0/System.Configuration.ConfigurationManager.targets": {}
@@ -359,27 +287,19 @@
           "Microsoft.IdentityModel.Tokens": "6.7.1"
         },
         "compile": {
-          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
         }
       },
       "System.IO.Pipelines/6.0.3": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/System.IO.Pipelines.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/System.IO.Pipelines.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/System.IO.Pipelines.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/System.IO.Pipelines.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -400,14 +320,10 @@
           "System.Security.Principal.Windows": "5.0.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Security.AccessControl.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.AccessControl.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.AccessControl.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -422,9 +338,7 @@
       "System.Security.Cryptography.Cng/4.5.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
         },
         "runtime": {
           "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
@@ -442,14 +356,10 @@
           "System.Memory": "4.6.3"
         },
         "compile": {
-          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp2.0/System.Security.Cryptography.ProtectedData.targets": {}
@@ -461,14 +371,10 @@
           "System.Security.AccessControl": "6.0.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Security.Permissions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Permissions.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.Permissions.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Permissions.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp2.0/System.Security.Permissions.targets": {}
@@ -477,14 +383,10 @@
       "System.Security.Principal.Windows/5.0.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp3.0/System.Security.Principal.Windows.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp3.0/System.Security.Principal.Windows.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.Security.Principal.Windows.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {
@@ -1304,11 +1206,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1344,17 +1241,10 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -1363,20 +1253,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.425\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNetCore.Authentication.JwtBearer' 5.0.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q7cg-43mg-qp69",
-      "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

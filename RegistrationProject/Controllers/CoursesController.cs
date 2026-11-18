@@ -24,11 +24,11 @@ namespace CourseRegistration.Controllers
         }
 
         [HttpGet]
-        public IActionResult getCourses()
+        public IActionResult GetAllCourses()
         {
             try
             {
-                IEnumerable<Course> list = _courseServices.getCourses();
+                IEnumerable<Course> list = _courseServices.GetAllCourses();
 
                 if(list !=null) return Ok(list);
                 else return BadRequest();
@@ -41,11 +41,11 @@ namespace CourseRegistration.Controllers
 
         // GET /courses/ARTD 105
         [HttpGet("{name}")]
-        public IActionResult getCourseByName(string name)
+        public IActionResult GetCourseByName(string name)
         {
             try
             {
-                Course c = _courseServices.getCourseByName(name);
+                Course c = _courseServices.GetCourseByName(name);
                 if (c == null) return NotFound($"Course '{name}' not found");
                 return Ok(c);
             }
@@ -87,7 +87,7 @@ namespace CourseRegistration.Controllers
             {
                 if (course == null) return BadRequest("Request body is required");
                 if (!_courseServices.updateCourse(name, course)) return NotFound($"Course '{name}' not found");
-                return Ok(_courseServices.getCourseByName(name));
+                return Ok(_courseServices.GetCourseByName(name));
             }
             catch (Exception) { return StatusCode(500, "Internal server error"); }
         }

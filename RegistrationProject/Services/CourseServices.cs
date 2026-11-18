@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using CourseRegistration.Models;
 using CourseRegistration.Repository;
+using System.Linq;
 
 namespace CourseRegistration.Services
 {
     public class CourseServices : ICourseServices
     {
-        private CourseRepository repo = new CourseRepository();
+        private CourseRepository _repo = new CourseRepository();
 
 
         //As a student, I want to search for course offerings that meet core goals 
@@ -15,8 +16,8 @@ namespace CourseRegistration.Services
          public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
           //finish this method during the tutorial 
           //use the repo to get the data from the database (data store)
-         List<CoreGoal> theGoals = repo.Goals;
-         List<CourseOffering> theOfferings = repo.Offerings;
+         List<CoreGoal> theGoals = _repo.Goals;
+         List<CourseOffering> theOfferings = _repo.Offerings;
 
          //Complete any other required functionality/business logic to satisfy the requirement
          CoreGoal theGoal=null;
@@ -45,18 +46,16 @@ namespace CourseRegistration.Services
         //Add more service functions here, as needed, for the project
 
         /* As a student, I want to see all available courses so that I know what my options are */
-        public List<Course> getCourses() {
-            //return a copy so callers can't modify the repository's own list
-            List<Course> allCourses = new List<Course>(repo.Courses);
-            allCourses.Sort();
-            return allCourses;
+        public List<Course> GetAllCourses() {
+            List<Course> theCourses = _repo.GetAllCourses().ToList<Course>();
+            return theCourses;
         }
 
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
         public List<CourseOffering> getCourseOfferingsBySemester(String semester) {
             List<CourseOffering> offeringsInSemester = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
+            foreach(CourseOffering o in _repo.Offerings) {
                 if(o.Semester.Equals(semester)) {
                     offeringsInSemester.Add(o);
                 }
@@ -68,7 +67,7 @@ namespace CourseRegistration.Services
         choose major courses to register for */
         public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept) {
             List<CourseOffering> offerings = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
+            foreach(CourseOffering o in _repo.Offerings) {
                 if(o.Semester.Equals(semester)
                     && o.TheCourse.Department.Equals(dept, StringComparison.OrdinalIgnoreCase)) {
                     offerings.Add(o);
@@ -79,16 +78,20 @@ namespace CourseRegistration.Services
 
         /* ---- Assignment #4 ---- */
 
-        public Course getCourseByName(String name) {
-            foreach(Course c in repo.Courses) {
-                if(c.Name.Equals(name, StringComparison.OrdinalIgnoreCase)) return c;
-            }
-            return null;
+        public Course GetCourseByName(string name)
+        {
+            Course c = _repo.GetCourseByName(name);
+            return c;
+        }
+
+        public Course AddCoures(Course newCourse)
+        {
+            return _repo.InsertCourse(newCourse);
         }
 
         public List<Course> getCoursesByDepartment(String dept) {
             List<Course> result = new List<Course>();
-            foreach(Course c in repo.Courses) {
+            foreach(Course c in _repo.Courses) {
                 if(c.Department.Equals(dept, StringComparison.OrdinalIgnoreCase)) result.Add(c);
             }
             result.Sort();
@@ -96,13 +99,12 @@ namespace CourseRegistration.Services
         }
 
         public bool addCourse(Course course) {
-            if(getCourseByName(course.Name) != null) return false;
-            repo.Courses.Add(course);
-            return true;
+            if(GetCourseByName(course.Name) != null) return false;
+            return _repo.InsertCourse(course) != null;
         }
 
         public bool updateCourse(String name, Course updated) {
-            Course existing = getCourseByName(name);
+            Course existing = GetCourseByName(name);
             if(existing == null) return false;
             //modify in place (not replace) so goals/offerings still point at the same object
             existing.Title = updated.Title;
@@ -112,29 +114,29 @@ namespace CourseRegistration.Services
         }
 
         public bool deleteCourse(String name) {
-            Course existing = getCourseByName(name);
+            Course existing = GetCourseByName(name);
             if(existing == null) return false;
-            repo.Courses.Remove(existing);
-            repo.Offerings.RemoveAll(o => o.TheCourse == existing);
-            foreach(CoreGoal g in repo.Goals) g.Courses.Remove(existing);
+            _repo.Courses.Remove(existing);
+            _repo.Offerings.RemoveAll(o => o.TheCourse == existing);
+            foreach(CoreGoal g in _repo.Goals) g.Courses.Remove(existing);
             return true;
         }
 
         public List<CoreGoal> getGoalsByCourseName(String name) {
-            Course course = getCourseByName(name);
+            Course course = GetCourseByName(name);
             if(course == null) return null;
             List<CoreGoal> result = new List<CoreGoal>();
-            foreach(CoreGoal g in repo.Goals) {
+            foreach(CoreGoal g in _repo.Goals) {
                 if(g.Courses.Contains(course)) result.Add(g);
             }
             return result;
         }
 
         public List<CourseOffering> getOfferingsByCourseNameAndSemester(String name, String semester) {
-            Course course = getCourseByName(name);
+            Course course = GetCourseByName(name);
             if(course == null) return null;
             List<CourseOffering> result = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
+            foreach(CourseOffering o in _repo.Offerings) {
                 if(o.TheCourse == course && o.Semester.Equals(semester, StringComparison.OrdinalIgnoreCase)) result.Add(o);
             }
             return result;

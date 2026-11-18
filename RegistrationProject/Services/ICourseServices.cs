@@ -12,7 +12,7 @@ namespace CourseRegistration.Services
         //Add more service functions here, as needed, for the project
 
         /* As a student, I want to see all available courses so that I know what my options are */
-        public List<Course> getCourses();
+        public List<Course> GetAllCourses();
 
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
@@ -23,7 +23,7 @@ namespace CourseRegistration.Services
         public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept);
 
         /* Assignment #4 endpoints */
-        public Course getCourseByName(String name);                       //null if not found
+        public Course GetCourseByName(String name);                       //null if not found
         public List<Course> getCoursesByDepartment(String dept);
         public bool addCourse(Course course);                             //false if name already exists
         public bool updateCourse(String name, Course updated);            //false if not found
