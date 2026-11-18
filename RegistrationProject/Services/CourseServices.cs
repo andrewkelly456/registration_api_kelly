@@ -2,142 +2,135 @@ using System;
 using System.Collections.Generic;
 using CourseRegistration.Models;
 using CourseRegistration.Repository;
+using System.Linq;
 
 namespace CourseRegistration.Services
 {
     public class CourseServices : ICourseServices
     {
-        private CourseRepository repo = new CourseRepository();
+        private CourseRepository _repo = new CourseRepository();
 
 
         //As a student, I want to search for course offerings that meet core goals 
         // so that I can register easily for courses that meet my program requirements
-         public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
-          //finish this method during the tutorial 
-          //use the repo to get the data from the database (data store)
-         List<CoreGoal> theGoals = repo.Goals;
-         List<CourseOffering> theOfferings = repo.Offerings;
+        public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
+            CoreGoal theGoal = _repo.GetCoreGoalWithCoursesById(theGoalId);
+            if(theGoal == null) throw new Exception("Didn't find the goal");
 
-         //Complete any other required functionality/business logic to satisfy the requirement
-         CoreGoal theGoal=null;
-         foreach(CoreGoal cg in theGoals) {
-         if(cg.Id.Equals(theGoalId)) {
-            theGoal=cg; break;
-
+            List<CourseOffering> result = new List<CourseOffering>();
+            foreach(CourseOffering o in _repo.GetOfferingsBySemester(semester)) {
+                if(theGoal.Courses.Any(c => c.Name == o.TheCourse.Name)) result.Add(o);
             }
-         }
-         if(theGoal==null) throw new Exception("Didn't find the goal");
-            //search list of courses, then for each course, search offerings
-      List<CourseOffering> courseOfferingsThatMeetGoal = new List<CourseOffering>();
-
-      foreach(CourseOffering c in theOfferings) {
-     if(c.Semester.Equals(semester) 
-        && theGoal.Courses.Contains(c.TheCourse) ) 
-     {
-        courseOfferingsThatMeetGoal.Add(c);
-     }
- 
-      }
-      return courseOfferingsThatMeetGoal;
+            return result;
         }
 
-        
-        //Add more service functions here, as needed, for the project
-
         /* As a student, I want to see all available courses so that I know what my options are */
-        public List<Course> getCourses() {
-            //return a copy so callers can't modify the repository's own list
-            List<Course> allCourses = new List<Course>(repo.Courses);
-            allCourses.Sort();
-            return allCourses;
+        public List<Course> GetAllCourses() {
+            List<Course> theCourses = _repo.GetAllCourses().ToList<Course>();
+            return theCourses;
         }
 
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
         public List<CourseOffering> getCourseOfferingsBySemester(String semester) {
-            List<CourseOffering> offeringsInSemester = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
-                if(o.Semester.Equals(semester)) {
-                    offeringsInSemester.Add(o);
-                }
-            }
-            return offeringsInSemester;
+            return _repo.GetOfferingsBySemester(semester).ToList();
         }
 
         /* As a student I want to see all course offerings by semester and department so that I can 
         choose major courses to register for */
         public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept) {
-            List<CourseOffering> offerings = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
-                if(o.Semester.Equals(semester)
-                    && o.TheCourse.Department.Equals(dept, StringComparison.OrdinalIgnoreCase)) {
-                    offerings.Add(o);
-                }
-            }
-            return offerings;
+            return _repo.GetOfferingsBySemester(semester)
+                .Where(o => o.TheCourse.Department.Equals(dept, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
 
         /* ---- Assignment #4 ---- */
 
-        public Course getCourseByName(String name) {
-            foreach(Course c in repo.Courses) {
-                if(c.Name.Equals(name, StringComparison.OrdinalIgnoreCase)) return c;
-            }
-            return null;
+        public Course GetCourseByName(string name)
+        {
+            Course c = _repo.GetCourseByName(name);
+            return c;
+        }
+
+        public Course AddCoures(Course newCourse)
+        {
+            return _repo.InsertCourse(newCourse);
         }
 
         public List<Course> getCoursesByDepartment(String dept) {
-            List<Course> result = new List<Course>();
-            foreach(Course c in repo.Courses) {
-                if(c.Department.Equals(dept, StringComparison.OrdinalIgnoreCase)) result.Add(c);
-            }
+            List<Course> result = _repo.GetAllCourses()
+                .Where(c => c.Department.Equals(dept, StringComparison.OrdinalIgnoreCase))
+                .ToList();
             result.Sort();
             return result;
         }
 
         public bool addCourse(Course course) {
-            if(getCourseByName(course.Name) != null) return false;
-            repo.Courses.Add(course);
-            return true;
+            if(GetCourseByName(course.Name) != null) return false;
+            return _repo.InsertCourse(course) != null;
         }
 
         public bool updateCourse(String name, Course updated) {
-            Course existing = getCourseByName(name);
-            if(existing == null) return false;
-            //modify in place (not replace) so goals/offerings still point at the same object
-            existing.Title = updated.Title;
-            existing.Credits = updated.Credits;
-            existing.Description = updated.Description;
-            return true;
+            if(GetCourseByName(name) == null) return false;
+            return _repo.UpdateCourseByName(name, updated) != null;
         }
 
         public bool deleteCourse(String name) {
-            Course existing = getCourseByName(name);
-            if(existing == null) return false;
-            repo.Courses.Remove(existing);
-            repo.Offerings.RemoveAll(o => o.TheCourse == existing);
-            foreach(CoreGoal g in repo.Goals) g.Courses.Remove(existing);
-            return true;
+            if(GetCourseByName(name) == null) return false;
+            return _repo.DeleteCourseByName(name);
         }
 
         public List<CoreGoal> getGoalsByCourseName(String name) {
-            Course course = getCourseByName(name);
-            if(course == null) return null;
-            List<CoreGoal> result = new List<CoreGoal>();
-            foreach(CoreGoal g in repo.Goals) {
-                if(g.Courses.Contains(course)) result.Add(g);
-            }
-            return result;
+            if(GetCourseByName(name) == null) return null;
+            return _repo.GetCoreGoalsByCourseName(name).ToList();
         }
 
         public List<CourseOffering> getOfferingsByCourseNameAndSemester(String name, String semester) {
-            Course course = getCourseByName(name);
-            if(course == null) return null;
-            List<CourseOffering> result = new List<CourseOffering>();
-            foreach(CourseOffering o in repo.Offerings) {
-                if(o.TheCourse == course && o.Semester.Equals(semester, StringComparison.OrdinalIgnoreCase)) result.Add(o);
-            }
-            return result;
+            if(GetCourseByName(name) == null) return null;
+            return _repo.GetOfferingsBySemester(semester)
+                .Where(o => o.TheCourse.Name == name)
+                .ToList();
+        }
+
+        /* ---- CoreGoal CRUD ---- */
+
+        public List<CoreGoal> GetAllCoreGoals() {
+            return _repo.GetAllCoreGoals().ToList();
+        }
+
+        public CoreGoal GetCoreGoalById(string id) {
+            return _repo.GetCoreGoalById(id);
+        }
+
+        public CoreGoal GetCoreGoalWithCoursesById(string id) {
+            return _repo.GetCoreGoalWithCoursesById(id);
+        }
+
+        public List<Course> GetCoursesForCoreGoalById(string id) {
+            if(_repo.GetCoreGoalById(id) == null) return null;
+            return _repo.GetCoursesForCoreGoalById(id).ToList();
+        }
+
+        public bool addCoreGoal(CoreGoal goal) {
+            if(_repo.GetCoreGoalById(goal.Id) != null) return false;
+            return _repo.InsertCoreGoal(goal) != null;
+        }
+
+        public bool updateCoreGoal(string id, CoreGoal modified) {
+            if(_repo.GetCoreGoalById(id) == null) return false;
+            return _repo.UpdateCoreGoal(id, modified);
+        }
+
+        public bool addCourseToCoreGoal(string id, string courseName) {
+            if(_repo.GetCoreGoalById(id) == null) return false;
+            Course course = _repo.GetCourseByName(courseName);
+            if(course == null) return false;
+            return _repo.AddCoursetoCoreGoal(id, course);
+        }
+
+        public bool deleteCoreGoal(string id) {
+            if(_repo.GetCoreGoalById(id) == null) return false;
+            return _repo.DeleteCoreGoal(id);
         }
 
         /* As a student I want to see all courses that meet a core goal, so that I can plan out

@@ -12,7 +12,7 @@ namespace CourseRegistration.Services
         //Add more service functions here, as needed, for the project
 
         /* As a student, I want to see all available courses so that I know what my options are */
-        public List<Course> getCourses();
+        public List<Course> GetAllCourses();
 
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
@@ -23,13 +23,23 @@ namespace CourseRegistration.Services
         public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept);
 
         /* Assignment #4 endpoints */
-        public Course getCourseByName(String name);                       //null if not found
+        public Course GetCourseByName(String name);                       //null if not found
         public List<Course> getCoursesByDepartment(String dept);
         public bool addCourse(Course course);                             //false if name already exists
         public bool updateCourse(String name, Course updated);            //false if not found
         public bool deleteCourse(String name);                            //false if not found
         public List<CoreGoal> getGoalsByCourseName(String name);          //null if course not found
         public List<CourseOffering> getOfferingsByCourseNameAndSemester(String name, String semester); //null if course not found
+
+        /* CoreGoal CRUD */
+        public List<CoreGoal> GetAllCoreGoals();
+        public CoreGoal GetCoreGoalById(String id);                       //null if not found
+        public CoreGoal GetCoreGoalWithCoursesById(String id);            //null if not found
+        public List<Course> GetCoursesForCoreGoalById(String id);         //null if goal not found
+        public bool addCoreGoal(CoreGoal goal);                           //false if id already exists
+        public bool updateCoreGoal(String id, CoreGoal modified);         //false if not found
+        public bool addCourseToCoreGoal(String id, String courseName);    //false if goal/course not found or already linked
+        public bool deleteCoreGoal(String id);                            //false if not found
 
         /* As a student I want to see all courses that meet a core goal, so that I can plan out
            my courses over the next few semesters and choose core courses that make sense for me */
