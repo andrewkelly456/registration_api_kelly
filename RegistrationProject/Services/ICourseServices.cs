@@ -31,6 +31,16 @@ namespace CourseRegistration.Services
         public List<CoreGoal> getGoalsByCourseName(String name);          //null if course not found
         public List<CourseOffering> getOfferingsByCourseNameAndSemester(String name, String semester); //null if course not found
 
+        /* CoreGoal CRUD */
+        public List<CoreGoal> GetAllCoreGoals();
+        public CoreGoal GetCoreGoalById(String id);                       //null if not found
+        public CoreGoal GetCoreGoalWithCoursesById(String id);            //null if not found
+        public List<Course> GetCoursesForCoreGoalById(String id);         //null if goal not found
+        public bool addCoreGoal(CoreGoal goal);                           //false if id already exists
+        public bool updateCoreGoal(String id, CoreGoal modified);         //false if not found
+        public bool addCourseToCoreGoal(String id, String courseName);    //false if goal/course not found or already linked
+        public bool deleteCoreGoal(String id);                            //false if not found
+
         /* As a student I want to see all courses that meet a core goal, so that I can plan out
            my courses over the next few semesters and choose core courses that make sense for me */
 
